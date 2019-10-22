@@ -26,8 +26,7 @@
         android:layout_height="367dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/polair_logo"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/polair_logo">
 
 
     </androidx.viewpager.widget.ViewPager>
@@ -54,34 +53,39 @@
 
     </Button>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/button_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.953"
-        >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.953">
 
         <Button
             android:id="@+id/splash_register_button"
-            android:background="@drawable/ic_btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:background="@drawable/ic_btn_register"
+            app:layout_constraintEnd_toStartOf="@+id/splash_login_button"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/button_container"
             style="?android:attr/borderlessButtonStyle"/>
 
         <Button
             android:id="@+id/splash_login_button"
-            android:background="@drawable/ic_btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:background="@drawable/ic_btn_login"
+            app:layout_constraintStart_toEndOf="@+id/splash_register_button"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/button_container"
             style="?android:attr/borderlessButtonStyle"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
