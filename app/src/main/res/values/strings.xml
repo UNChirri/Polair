@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Polair</string>
     <string name="title_activity_maps">Map</string>
+    <string name="bikers_first">Ciclistas primera pagina</string>
+    <string name="mobilize">Movilizate por la ruta mas sana para tus pulmones</string>
+    <string name="travel">Viaja con Polair</string>
+    <string name="bikers_second">Ciclistas segunda pagina</string>
+    <string name="share">Comparte</string>
+    <string name="help_others">Ayuda a otros ciclistas, colabora con tus amigos</string>
 </resources>
