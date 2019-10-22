@@ -40,6 +40,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoadingActivity"
+            android:label="Loading"
+            android:theme="@style/AppThemeNoActionBar">
+        </activity>
+        <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/AppThemeNoActionBar">
