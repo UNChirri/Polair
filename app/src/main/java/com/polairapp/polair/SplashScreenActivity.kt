@@ -1,6 +1,8 @@
 package com.polairapp.polair
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -56,5 +58,11 @@ class SplashScreenActivity : AppCompatActivity() {
         descriptions.add(mobilizeFragment)
         descriptions.add(shareFragment)
         return descriptions
+    }
+
+    fun startNextActivity(view: View) {
+        val intent = Intent(view.context, LoadingActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 }
