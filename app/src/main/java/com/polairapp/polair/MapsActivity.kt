@@ -1,5 +1,6 @@
 package com.polairapp.polair
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -34,6 +35,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_tools))
                 flat(true)
             })
+        }
+        btnPrediction.setOnClickListener {
+            val intent = Intent(this, PredictActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
