@@ -3,6 +3,7 @@
     package="com.polairapp.polair">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -24,6 +25,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+
         <activity android:name=".presentation.LoginActivity"
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
@@ -37,5 +42,4 @@
             android:name=".presentation.MapsActivity"
             android:theme="@style/AppThemeNoActionBar"/>
     </application>
-
 </manifest>
