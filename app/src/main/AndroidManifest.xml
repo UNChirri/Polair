@@ -30,6 +30,9 @@
 
 
         <activity android:name=".presentation.LoginActivity"
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="Splash"
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,9 +40,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoadingActivity"
+            android:label="Loading"
+            android:theme="@style/AppThemeNoActionBar">
+        </activity>
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:theme="@style/AppThemeNoActionBar">
+        </activity>
 
         <activity
             android:name=".presentation.MapsActivity"
             android:theme="@style/AppThemeNoActionBar"/>
     </application>
+
 </manifest>
