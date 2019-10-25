@@ -79,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_btn_login"
+            android:onClick="startNextActivity"
             app:layout_constraintStart_toEndOf="@+id/splash_register_button"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintEnd_toEndOf="parent"
