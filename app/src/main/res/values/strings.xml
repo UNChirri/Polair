@@ -8,4 +8,6 @@
     <string name="share">Comparte</string>
     <string name="help_others">Ayuda a otros ciclistas, colabora con tus amigos</string>
     <string name="air_icon">Icono de aire</string>
+    <string name="tips_text">Predice la contaminación en tu ciudad hasta en las próximas 24 horas</string>
+    <string name="divisor">Divisor</string>
 </resources>
