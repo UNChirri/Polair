@@ -10,4 +10,5 @@
     <string name="air_icon">Icono de aire</string>
     <string name="tips_text">Predice la contaminación en tu ciudad hasta en las próximas 24 horas</string>
     <string name="divisor">Divisor</string>
+    <string name="buttons_container">Contenedor de botones</string>
 </resources>

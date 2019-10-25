@@ -13,12 +13,13 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/tips_text"
         android:fontFamily="@font/montserrat_regular"
-        android:text="@string/tips_text"
-        android:textSize="20sp"
         android:gravity="center"
+        android:text="@string/tips_text"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/time_picker_predict"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,7 +32,7 @@
         android:timePickerMode="spinner"
         android:theme="@style/PredictTimePickerStyle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_divider"
         app:layout_constraintTop_toBottomOf="@+id/tips_text"
         app:layout_constraintEnd_toEndOf="parent"
         >
@@ -45,12 +46,95 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttons_container"
         app:layout_constraintTop_toBottomOf="@+id/time_picker_predict"
         app:layout_constraintEnd_toEndOf="parent">
 
     </ImageView>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttons_container"
+        android:contentDescription="@string/buttons_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <Button
+            android:id="@+id/btn_pm25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_pm_25"
+            app:layout_constraintBottom_toTopOf="@id/btn_o3"
+            app:layout_constraintEnd_toStartOf="@+id/btn_pm10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_pm10"
+            android:background="@drawable/ic_pm_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/btn_pm25"
+            app:layout_constraintBottom_toTopOf="@id/btn_so2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_no2">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_no2"
+            android:background="@drawable/ic_no_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/btn_pm10"
+            app:layout_constraintBottom_toTopOf="@+id/btn_co"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_o3"
+            android:background="@drawable/ic_o_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_pm25"
+            app:layout_constraintEnd_toStartOf="@+id/btn_so2"
+            >
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_so2"
+            android:background="@drawable/ic_so_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/btn_o3"
+            app:layout_constraintTop_toBottomOf="@id/btn_pm10"
+            app:layout_constraintEnd_toStartOf="@+id/btn_co">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_co"
+            android:background="@drawable/ic_co"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/btn_so2"
+            app:layout_constraintTop_toBottomOf="@id/btn_no2"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </Button>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
