@@ -1,4 +1,4 @@
-package com.polairapp.polair.presentation
+package com.polairapp.polair
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.firebase.auth.FirebaseAuth
-import com.polairapp.polair.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -39,7 +38,7 @@ class LoginActivity: AppCompatActivity() {
         facebookLogin.setReadPermissions("email", "public_profile")
         facebookLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                startActivity(Intent(this@LoginActivity,MapsActivity::class.java))
+                startActivity(Intent(this@LoginActivity, LoadingActivity::class.java))
             }
 
             override fun onCancel() {

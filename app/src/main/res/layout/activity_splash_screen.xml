@@ -33,18 +33,19 @@
 
     <Button
         android:id="@+id/pager_one"
-        android:layout_width="9dp"
-        android:layout_height="9dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:background="@drawable/pager_btn"
         app:layout_constraintEnd_toStartOf="@+id/pager_two"
-        app:layout_constraintTop_toBottomOf="@+id/splash_viewpager">
+        app:layout_constraintTop_toBottomOf="@+id/splash_viewpager"
+        android:layout_marginEnd="10dp">
 
     </Button>
 
     <Button
         android:id="@+id/pager_two"
-        android:layout_width="9dp"
-        android:layout_height="9dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:background="@drawable/pager_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -59,9 +60,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/splash_register_button"
@@ -69,7 +68,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_btn_register"
             app:layout_constraintEnd_toStartOf="@+id/splash_login_button"
-            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/button_container"
             style="?android:attr/borderlessButtonStyle"/>
@@ -81,7 +79,6 @@
             android:background="@drawable/ic_btn_login"
             android:onClick="startNextActivity"
             app:layout_constraintStart_toEndOf="@+id/splash_register_button"
-            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/button_container"
             style="?android:attr/borderlessButtonStyle"/>
