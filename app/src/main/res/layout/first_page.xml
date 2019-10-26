@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_bikers_first"
         android:contentDescription="@string/bikers_first"
-        app:layout_constraintBottom_toTopOf="@+id/travel_with_polair"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,21 +26,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bikers_first"
-        app:layout_constraintBottom_toTopOf="@+id/mobilize">
+        app:layout_constraintBottom_toTopOf="@+id/mobilize"
+        >
 
     </ImageView>
-
 
     <ImageView
         android:id="@+id/mobilize"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:contentDescription="@string/mobilize"
         android:background="@drawable/ic_movilizate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/travel_with_polair"
-        >
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp">
 
     </ImageView>
 

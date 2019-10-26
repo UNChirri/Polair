@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -38,4 +37,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.github.bumptech.glide:annotations:4.10.0'
 
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.facebook.android:facebook-login:[5,6)'
 }
+apply plugin: 'com.google.gms.google-services'
