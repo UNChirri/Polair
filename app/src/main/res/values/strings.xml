@@ -12,4 +12,6 @@
     <string name="divisor">Divisor</string>
     <string name="buttons_container">Contenedor de botones</string>
     <string name="predict_button">Predecir</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="login">INICIAR SESIÓN</string>
 </resources>

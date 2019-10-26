@@ -62,7 +62,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
     fun startNextActivity(view: View) {
         val intent = Intent(view.context, LoginActivity::class.java)
-        finish()
         startActivity(intent)
     }
 }

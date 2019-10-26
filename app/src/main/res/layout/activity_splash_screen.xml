@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_background">
 
     <ImageView
         android:id="@+id/polair_logo"
-        android:layout_width="300dp"
-        android:layout_height="101dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
         android:background="@drawable/ic_polair"
         android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055">
+        app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/splash_viewpager"
-        android:layout_width="325dp"
-        android:layout_height="367dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/polair_logo">
-
+        app:layout_constraintTop_toBottomOf="@id/polair_logo">
 
     </androidx.viewpager.widget.ViewPager>
 
@@ -54,36 +55,41 @@
 
     </Button>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button_container"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/splash_register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_btn_register"
-            app:layout_constraintEnd_toStartOf="@+id/splash_login_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/button_container"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_button"
+            android:text="@string/sign_up"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/splash_login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_btn_login"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_button"
             android:onClick="startNextActivity"
-            app:layout_constraintStart_toEndOf="@+id/splash_register_button"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/button_container"
-            style="?android:attr/borderlessButtonStyle"/>
+            app:layout_constraintStart_toEndOf="@id/splash_register_button" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
