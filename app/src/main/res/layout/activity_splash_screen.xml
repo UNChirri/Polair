@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toStartOf="@+id/splash_login_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/button_container"
-            style="@style/loginButtons"/>
+            style="?android:attr/borderlessButtonStyle"/>
 
         <Button
             android:id="@+id/splash_login_button"
@@ -81,7 +81,7 @@
             app:layout_constraintStart_toEndOf="@+id/splash_register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/button_container"
-            style="@style/loginButtons"/>
+            style="?android:attr/borderlessButtonStyle"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
