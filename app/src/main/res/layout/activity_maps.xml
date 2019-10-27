@@ -11,11 +11,37 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MapsActivity" />
+        tools:context=".MapsActivity"
+        map:layout_constraintTop_toBottomOf="@id/frameStartPath"/>
+
+    <FrameLayout
+        android:id="@+id/frameStartPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imvDropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_dropdown"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintBottom_toTopOf="@id/viewCenterDropdown"
+        android:layout_marginStart="15dp"
+        android:visibility="gone"/>
+
+<View
+    android:id="@+id/viewCenterDropdown"
+    android:layout_marginTop="20dp"
+    android:layout_width="1dp"
+    android:layout_height="1dp"
+    map:layout_constraintStart_toStartOf="parent"
+    map:layout_constraintTop_toBottomOf="@id/frameStartPath"/>
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imvBurguerMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_menu_button"
@@ -23,6 +49,7 @@
         map:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_map_message"

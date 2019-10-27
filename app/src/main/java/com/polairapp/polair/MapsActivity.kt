@@ -3,6 +3,8 @@ package com.polairapp.polair
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_maps.*
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private val selectPathFragment = SelectPathFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +43,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this, PredictActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        btnLetsGo.setOnClickListener {
+            showPath()
+        }
+    }
+
+    private fun showPath() {
+        replaceFragment(selectPathFragment)
+        imvBurguerMenu.visibility = View.VISIBLE
+        imvDropdown.visibility = View.VISIBLE
+        imvTitle.visibility = View.GONE
+
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frameStartPath, fragment, fragment.tag).addToBackStack(fragment.tag)
+            commit()
         }
     }
 

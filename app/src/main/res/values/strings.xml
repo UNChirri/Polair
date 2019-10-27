@@ -14,4 +14,8 @@
     <string name="predict_button">Predecir</string>
     <string name="sign_up">Registrarse</string>
     <string name="login">INICIAR SESIÓN</string>
+    <string name="start_path">Punto de inicio:</string>
+    <string name="finish_path">Destino:</string>
+    <string name="safe_path">Ruta menos contaminada</string>
+    <string name="paths_saved">Rutas guardadas</string>
 </resources>
