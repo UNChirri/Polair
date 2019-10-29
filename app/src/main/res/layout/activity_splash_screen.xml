@@ -73,6 +73,7 @@
             android:layout_weight="1"
             android:background="@drawable/login_button"
             android:text="@string/sign_up"
+            android:fontFamily="@font/montserrat_regular"
             android:textColor="@android:color/white" />
 
         <Button
@@ -84,6 +85,7 @@
             android:background="@drawable/login_button"
             android:onClick="startNextActivity"
             android:text="@string/login"
+            android:fontFamily="@font/montserrat_regular"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
