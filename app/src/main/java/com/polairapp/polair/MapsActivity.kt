@@ -8,14 +8,18 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.google.maps.android.heatmaps.HeatmapTileProvider
 import kotlinx.android.synthetic.main.activity_maps.*
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+
+    private var mProvider: HeatmapTileProvider? = null
+
+    private var mOverlay: TileOverlay? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,5 +62,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sydney = LatLng(4.63819,-74.08623)
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,15f))
+
+        //Experimental call - HeatMap
+        addHeatMap()
+    }
+
+    private fun addHeatMap() {
+        val defaultPoints : ArrayList<LatLng> = ArrayList()
+        defaultPoints.add(LatLng(4.63819,-74.08623))
+        mProvider = HeatmapTileProvider.Builder().data(defaultPoints).build()
+        mOverlay = mMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
     }
 }
