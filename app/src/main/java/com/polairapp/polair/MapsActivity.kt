@@ -1,6 +1,7 @@
 package com.polairapp.polair
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -9,6 +10,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.maps.android.heatmaps.Gradient
 import com.google.maps.android.heatmaps.HeatmapTileProvider
 import kotlinx.android.synthetic.main.activity_maps.*
 
@@ -17,9 +19,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
-    private var mProvider: HeatmapTileProvider? = null
+    private val ALT_HEATMAP_GRADIENT_COLORS = intArrayOf(
+        Color.argb(0, 0, 255, 255), // transparent
+        Color.argb(255 / 3 * 2, 0, 255, 255),
+        Color.rgb(0, 191, 255),
+        Color.rgb(0, 0, 127),
+        Color.rgb(255, 0, 0)
+    )
 
-    private var mOverlay: TileOverlay? = null
+    val ALT_HEATMAP_GRADIENT_START_POINTS = floatArrayOf(0.0f, 0.10f, 0.20f, 0.60f, 1.0f)
+
+    val ALT_HEATMAP_GRADIENT = Gradient(
+        ALT_HEATMAP_GRADIENT_COLORS,
+        ALT_HEATMAP_GRADIENT_START_POINTS
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +82,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun addHeatMap() {
         val defaultPoints : ArrayList<LatLng> = ArrayList()
+        //Points, should be read from a json dataset
         defaultPoints.add(LatLng(4.63811,-74.08610))
         defaultPoints.add(LatLng(4.63811,-74.08610))
         defaultPoints.add(LatLng(4.63811,-74.08610))
@@ -89,8 +103,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         defaultPoints.add(LatLng(4.63841,-74.08035))
         defaultPoints.add(LatLng(4.63951,-74.08675))
         defaultPoints.add(LatLng(4.63161,-74.08695))
+        //HeatmapTileProvider must be declared here in order to modify radius
         val mProvider: HeatmapTileProvider = HeatmapTileProvider.Builder().data(defaultPoints).build()
+        //Setups
         mProvider.setRadius(150)
-        mOverlay = mMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
+        mProvider.setGradient(ALT_HEATMAP_GRADIENT)
+        mProvider.setOpacity(0.7)
+        val mOverlay : TileOverlay = mMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
+        mOverlay.clearTileCache()
     }
 }
