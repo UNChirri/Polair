@@ -129,7 +129,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_grey_human"
             app:layout_constraintStart_toEndOf="@+id/imvBicycle"
-            app:layout_constraintBottom_toBottomOf="@id/consLaySavedPaths"
             app:layout_constraintTop_toBottomOf="@id/consLayFinishPath"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
@@ -142,9 +141,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/consLaySelectPath"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
 
         <TextView
+            android:id="@+id/txvTitleSavedRoutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_regular"
@@ -155,6 +156,97 @@
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@android:color/white"/>
 
+        <RadioButton
+            android:id="@+id/rdbtnHouseToU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txvTitleSavedRoutes"
+            android:layout_marginStart="20dp"
+            android:theme="@style/MyRadioButton" />
+
+
+        <TextView
+            android:id="@+id/txvHouse1"
+            android:text="@string/house"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            style="@style/monserratMedium"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/rdbtnHouseToU"
+            app:layout_constraintBottom_toTopOf="@id/rdbtnHouseToU"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnHouseToU"
+            android:drawableStart="@drawable/ic_house_"
+            android:gravity="center"
+            android:drawablePadding="10dp"/>
+
+        <ImageView
+            android:id="@+id/imvRightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_right_arrow"
+            app:layout_constraintStart_toStartOf="@id/imvRightArrow2"
+            app:layout_constraintBottom_toTopOf="@id/rdbtnHouseToU"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnHouseToU" />
+
+        <TextView
+            android:id="@+id/txvUniversity"
+            style="@style/monserratMedium"
+            app:layout_constraintStart_toEndOf="@id/imvRightArrow"
+            app:layout_constraintBottom_toTopOf="@id/rdbtnHouseToU"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnHouseToU"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/university"
+            android:textColor="@android:color/white"
+            android:textAllCaps="true"
+            android:drawableStart="@drawable/ic_university_icon"
+            android:drawablePadding="10dp"/>
+
+        <RadioButton
+            android:id="@+id/rdbtnWorkToHouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnHouseToU"
+            android:layout_marginStart="20dp"
+            android:theme="@style/MyRadioButton"/>
+
+        <TextView
+            android:id="@+id/txvWork"
+            android:text="@string/work"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            style="@style/monserratMedium"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/rdbtnWorkToHouse"
+            app:layout_constraintBottom_toTopOf="@id/rdbtnWorkToHouse"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnWorkToHouse"
+            android:drawableStart="@drawable/ic_work_icon"
+            android:gravity="center"
+            android:drawablePadding="10dp"/>
+
+        <ImageView
+            android:id="@+id/imvRightArrow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_right_arrow"
+            app:layout_constraintStart_toEndOf="@id/txvWork"
+            app:layout_constraintBottom_toTopOf="@id/rdbtnWorkToHouse"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnWorkToHouse"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:id="@+id/txvHouse2"
+            android:text="@string/house"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            style="@style/monserratMedium"
+            app:layout_constraintStart_toStartOf="@id/txvUniversity"
+            app:layout_constraintBottom_toTopOf="@id/rdbtnWorkToHouse"
+            app:layout_constraintTop_toBottomOf="@id/rdbtnWorkToHouse"
+            android:drawableStart="@drawable/ic_house_"
+            android:gravity="center"
+            android:drawablePadding="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

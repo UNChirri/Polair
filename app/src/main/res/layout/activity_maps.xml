@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_dropdown"
         map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintBottom_toTopOf="@id/viewCenterDropdown"
+        map:layout_constraintBottom_toBottomOf="@id/viewCenterDropdown"
         android:layout_marginStart="15dp"
         android:visibility="gone"/>
 

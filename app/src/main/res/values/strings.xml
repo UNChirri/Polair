@@ -18,4 +18,7 @@
     <string name="finish_path">Destino:</string>
     <string name="safe_path">Ruta menos contaminada</string>
     <string name="paths_saved">Rutas guardadas</string>
+    <string name="house">casa</string>
+    <string name="university">Universidad</string>
+    <string name="work">trabajo</string>
 </resources>
