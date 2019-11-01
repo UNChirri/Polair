@@ -22,12 +22,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val ALT_HEATMAP_GRADIENT_COLORS = intArrayOf(
         Color.argb(0, 0, 255, 255), // transparent
         Color.argb(255 / 3 * 2, 0, 255, 255),
-        Color.rgb(0, 191, 255),
-        Color.rgb(0, 0, 127),
+        Color.rgb(0, 255, 255),
+        Color.rgb(0, 255, 0),
+        Color.rgb(255, 255, 0),
         Color.rgb(255, 0, 0)
     )
 
-    val ALT_HEATMAP_GRADIENT_START_POINTS = floatArrayOf(0.0f, 0.10f, 0.20f, 0.60f, 1.0f)
+    val ALT_HEATMAP_GRADIENT_START_POINTS = floatArrayOf(0.0f, 0.10f, 0.20f, 0.30f, 0.40f, 1.0f)
 
     val ALT_HEATMAP_GRADIENT = Gradient(
         ALT_HEATMAP_GRADIENT_COLORS,
@@ -84,31 +85,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val defaultPoints : ArrayList<LatLng> = ArrayList()
         //Points, should be read from a json dataset
         defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63811,-74.08610))
-        defaultPoints.add(LatLng(4.63822,-73.08621))
-        defaultPoints.add(LatLng(4.63833,-72.08632))
-        defaultPoints.add(LatLng(4.63844,-73.08643))
-        defaultPoints.add(LatLng(4.63855,-71.08654))
-        defaultPoints.add(LatLng(4.63866,-70.08665))
-        defaultPoints.add(LatLng(4.63811,-74.08165))
-        defaultPoints.add(LatLng(4.63721,-74.08625))
-        defaultPoints.add(LatLng(4.63631,-74.08635))
-        defaultPoints.add(LatLng(4.63841,-74.08035))
-        defaultPoints.add(LatLng(4.63951,-74.08675))
-        defaultPoints.add(LatLng(4.63161,-74.08695))
+        defaultPoints.add(LatLng(4.63611,-74.08410))
+        defaultPoints.add(LatLng(4.63511,-74.08910))
         //HeatmapTileProvider must be declared here in order to modify radius
         val mProvider: HeatmapTileProvider = HeatmapTileProvider.Builder().data(defaultPoints).build()
         //Setups
         mProvider.setRadius(150)
         mProvider.setGradient(ALT_HEATMAP_GRADIENT)
-        mProvider.setOpacity(0.7)
+        mProvider.setOpacity(0.3)
         val mOverlay : TileOverlay = mMap.addTileOverlay(TileOverlayOptions().tileProvider(mProvider))
         mOverlay.clearTileCache()
     }
