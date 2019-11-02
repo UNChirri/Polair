@@ -21,4 +21,8 @@
     <string name="house">casa</string>
     <string name="university">Universidad</string>
     <string name="work">trabajo</string>
+    <string name="naval_club">Club Naval</string>
+    <string name="angela_peralta_theatre">Teatro Angela Peralta</string>
+    <string name="centro_club">Centro Club Distrital</string>
+    <string name="pressto">Pressto Parque</string>
 </resources>

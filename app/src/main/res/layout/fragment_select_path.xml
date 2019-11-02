@@ -21,81 +21,73 @@
             android:background="@drawable/ic_back"
             android:layout_marginStart="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/consLayStartPath"
-            app:layout_constraintBottom_toBottomOf="@id/consLayStartPath" />
+            app:layout_constraintTop_toTopOf="@id/edtStartPath"
+            app:layout_constraintBottom_toBottomOf="@id/edtStartPath" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consLayStartPath"
+        <EditText
+            android:id="@+id/edtStartPath"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/grey_field_button"
+            android:drawableEnd="@drawable/ic_start_path"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/imvBack"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/grey_field_button"
-            android:padding="8dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginTop="25dp">
+            style="@style/monserratBoldHint"
+            android:hint="@string/start_path"/>
 
-
-            <TextView
-                style="@style/monserratBold"
-                android:text="@string/start_path"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="15dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_start_path"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consLayFinishPath"
+        <EditText
+            android:id="@+id/edtFinishPath"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/consLayStartPath"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/consLayStartPath"
-            android:background="@drawable/grey_field_button"
-            android:padding="8dp"
+            android:padding="10dp"
+            android:paddingStart="20dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@drawable/grey_field_button"
+            android:drawableEnd="@drawable/ic_location"
+            app:layout_constraintTop_toBottomOf="@id/edtStartPath"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/edtStartPath"
+            style="@style/monserratBoldHint"
+            android:hint="@string/finish_path"/>
 
+        <LinearLayout
+            android:id="@+id/linLayStartPathHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/edtStartPath"
+            app:layout_constraintStart_toStartOf="@+id/edtStartPath"
+            app:layout_constraintEnd_toEndOf="@+id/edtStartPath"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
-                style="@style/monserratBold"
-                android:text="@string/finish_path"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="15dp"/>
+                android:id="@+id/txvNavalClub"
+                style="@style/searchHistoryTextView"
+                android:text="@string/naval_club"
+                android:drawableStart="@drawable/ic_history_clock_button"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_location"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="5dp"/>
+            <TextView
+                android:id="@+id/txvAngelaTheatre"
+                style="@style/searchHistoryTextView"
+                android:text="@string/angela_peralta_theatre"
+                android:drawableStart="@drawable/ic_history_clock_button"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txvSafePath"
             style="@style/monserratMedium"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/consLayFinishPath"
+            app:layout_constraintTop_toBottomOf="@id/edtFinishPath"
             android:textSize="12dp"
             android:layout_margin="15dp"
             android:text="@string/safe_path"
@@ -107,7 +99,7 @@
             android:layout_height="0dp"
             android:layout_margin="10dp"
             app:layout_constraintStart_toEndOf="@id/txvSafePath"
-            app:layout_constraintTop_toBottomOf="@id/consLayFinishPath"
+            app:layout_constraintTop_toBottomOf="@id/edtFinishPath"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@android:color/white" />
 
@@ -118,7 +110,7 @@
             android:background="@drawable/ic_white_bicycle"
             app:layout_constraintStart_toEndOf="@+id/whiteLine"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/consLayFinishPath"
+            app:layout_constraintTop_toBottomOf="@id/edtFinishPath"
             app:layout_constraintEnd_toStartOf="@id/imvHuman"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"/>
@@ -129,10 +121,35 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_grey_human"
             app:layout_constraintStart_toEndOf="@+id/imvBicycle"
-            app:layout_constraintTop_toBottomOf="@id/consLayFinishPath"
+            app:layout_constraintTop_toBottomOf="@id/edtFinishPath"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/linLayFinishPathHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/edtFinishPath"
+            app:layout_constraintStart_toStartOf="@+id/edtFinishPath"
+            app:layout_constraintEnd_toEndOf="@+id/edtFinishPath"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txvCentroCulturalDigital"
+                style="@style/searchHistoryTextView"
+                android:text="@string/centro_club"
+                android:drawableStart="@drawable/ic_history_clock_button"/>
+
+            <TextView
+                android:id="@+id/txvPresstoParquePolanco"
+                style="@style/searchHistoryTextView"
+                android:text="@string/pressto"
+                android:drawableStart="@drawable/ic_history_clock_button"/>
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

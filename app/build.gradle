@@ -39,5 +39,11 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.facebook.android:facebook-login:[5,6)'
+
+    def recyclerview_version = "1.0.0"
+
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:$recyclerview_version"
 }
 apply plugin: 'com.google.gms.google-services'
