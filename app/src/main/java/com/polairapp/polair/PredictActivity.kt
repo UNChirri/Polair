@@ -2,12 +2,14 @@ package com.polairapp.polair
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_predict.*
 
 class PredictActivity : AppCompatActivity() {
 
     var groupLogic : BooleanArray = booleanArrayOf(false, false, false, false, false, false)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,46 @@ class PredictActivity : AppCompatActivity() {
             if (i != buttonIndex) {
                 groupLogic[i] = false
             }
+        }
+    }
+
+    private fun getSelectedButtonIndex(): Int {
+        var selectedButtonIndex = 99
+        for(i in 0 until groupLogic.size) {
+            if (groupLogic[i]) {
+                selectedButtonIndex = i
+            }
+        }
+        return selectedButtonIndex
+    }
+
+    private fun getSelectedButtonName(index: Int): String {
+        var buttonName = ""
+        when(index) {
+            0 -> buttonName = "PM2.5"
+            1 -> buttonName = "PM10"
+            2 -> buttonName = "NO2"
+            3 -> buttonName = "O3"
+            4 -> buttonName = "SO2"
+            5 -> buttonName = "CO"
+            else -> buttonName = ""
+        }
+        return buttonName
+    }
+
+    private fun getTimeFormatted(): String {
+        val selectedHour = if (time_picker_predict.hour >= 12) time_picker_predict.hour % 12 else time_picker_predict.hour
+        val selectedHourFromatted = if (selectedHour == 0) 12 else selectedHour
+        val amOrPm = if (time_picker_predict.hour >= 12) "PM" else "AM"
+        return selectedHourFromatted.toString() + ":" + time_picker_predict.minute.toString() + " " + amOrPm
+
+    }
+
+    fun startNextActivity(view: View) {
+        val buttonIndex = getSelectedButtonIndex()
+        if(buttonIndex < groupLogic.size) {
+            val intent = Intent(view.context, PredictResultsActivity::class.java).putExtra("gas", getSelectedButtonName(getSelectedButtonIndex())).putExtra("time", getTimeFormatted())
+            startActivity(intent)
         }
     }
 
