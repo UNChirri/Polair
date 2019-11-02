@@ -7,6 +7,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.activity_predict_results.*
 
 class PredictResultsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -19,7 +20,7 @@ class PredictResultsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        getString(R.string.prediction_params).format(
+        predict_params.text = getString(R.string.prediction_params).format(
             intent.getStringExtra("gas"),
             intent.getStringExtra("time")
         )

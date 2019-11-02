@@ -17,6 +17,8 @@
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/ic_back_pre_res"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +40,7 @@
             android:text="@string/future_contamination"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@android:color/white"
-            android:layout_gravity="center">
+            android:layout_gravity="center_horizontal">
 
         </TextView>
 
@@ -49,7 +51,7 @@
             android:text="@string/prediction_params"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@android:color/white"
-            android:layout_gravity="center">
+            android:layout_gravity="center_horizontal">
 
         </TextView>
     </LinearLayout>
