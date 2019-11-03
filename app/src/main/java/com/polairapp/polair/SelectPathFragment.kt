@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
-import com.polairapp.polair.MapsActivity.Companion.FINISH_PATH
-import com.polairapp.polair.MapsActivity.Companion.START_PATH
 import kotlinx.android.synthetic.main.fragment_select_path.*
 
 class SelectPathFragment: Fragment() {
@@ -69,7 +67,7 @@ class SelectPathFragment: Fragment() {
         }
 
         txvCentroCulturalDigital.setOnClickListener {
-            linLayFinishPathHistory.visibility = View.GONE
+            linLayFinishPathHistory.visibility = View.INVISIBLE
             finisPath.value = LatLng(19.422784, -99.175932)
             edtFinishPath.setText(txvCentroCulturalDigital.text)
         }
