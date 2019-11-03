@@ -47,6 +47,7 @@
     <style name="searchHistoryTextView" parent="monserratMedium">
         <item name="android:drawablePadding">10dp</item>
         <item name="android:paddingStart">10dp</item>
+        <item name="android:layout_margin">5dp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 

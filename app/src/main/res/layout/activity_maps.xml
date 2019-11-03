@@ -31,14 +31,24 @@
         android:layout_marginStart="15dp"
         android:visibility="gone"/>
 
-<View
-    android:id="@+id/viewCenterDropdown"
-    android:layout_marginTop="20dp"
-    android:layout_width="1dp"
-    android:layout_height="1dp"
-    map:layout_constraintStart_toStartOf="parent"
-    map:layout_constraintTop_toBottomOf="@id/frameStartPath"/>
+    <View
+        android:id="@+id/viewCenterDropdown"
+        android:layout_marginTop="20dp"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toBottomOf="@id/frameStartPath"/>
 
+
+    <ImageView
+        android:id="@+id/imvBackBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_back_blue"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/imvBurguerMenu"
@@ -57,6 +67,17 @@
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/imvFinishJourney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_end_journey"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
+
 
     <ImageView
         android:id="@+id/btnPlus"
@@ -78,35 +99,65 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"/>
 
-    <ImageView
-        android:id="@+id/imvSOS"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consLayButtonsWithoutGo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_sos_button"
-        map:layout_constraintBottom_toTopOf="@+id/btnWorkshop"
         map:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"/>
+        map:layout_constraintBottom_toTopOf="@+id/btnLetsGo">
+
+        <ImageView
+            android:id="@+id/imvSOS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_sos_button"
+            map:layout_constraintBottom_toTopOf="@+id/btnWorkshop"
+            map:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <ImageView
+            android:id="@+id/btnWorkshop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_workshops_button"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintBottom_toTopOf="@id/btnPrediction"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <ImageView
+            android:id="@+id/btnPrediction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_prediction_button"
+            map:layout_constraintBottom_toBottomOf="parent"
+            map:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/btnWorkshop"
+        android:id="@+id/btnLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_workshops_button"
+        android:background="@drawable/ic_location_button"
         map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintBottom_toTopOf="@id/btnPrediction"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"/>
-
-    <ImageView
-        android:id="@+id/btnPrediction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_prediction_button"
         map:layout_constraintBottom_toTopOf="@+id/btnLetsGo"
-        map:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/btnCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_camera_button"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/btnLetsGo"

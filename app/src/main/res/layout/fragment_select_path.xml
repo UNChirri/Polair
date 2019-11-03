@@ -143,12 +143,6 @@
                 android:text="@string/centro_club"
                 android:drawableStart="@drawable/ic_history_clock_button"/>
 
-            <TextView
-                android:id="@+id/txvPresstoParquePolanco"
-                style="@style/searchHistoryTextView"
-                android:text="@string/pressto"
-                android:drawableStart="@drawable/ic_history_clock_button"/>
-
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

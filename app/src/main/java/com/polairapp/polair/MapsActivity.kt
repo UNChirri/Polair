@@ -15,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_maps.*
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.android.gms.maps.model.*
 
@@ -25,11 +26,31 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     private val selectPathFragment = SelectPathFragment()
     private var startMarket: MarkerOptions?=null
     private var finishMarker: MarkerOptions?=null
+    private val screenStates = MutableLiveData<ScreenStates>()
+    private val path = PolylineOptions().apply {
+        add(LatLng(19.420971, -99.199891),
+            LatLng(19.420074, -99.197279),
+            LatLng(19.418565, -99.193715),
+            LatLng(19.420941, -99.192623),
+            LatLng(19.421442, -99.190165),
+            LatLng(19.421112, -99.189558),
+            LatLng(19.421356, -99.188253),
+            LatLng(19.421487, -99.184251),
+            LatLng(19.422185, -99.181633),
+            LatLng(19.421952, -99.180217),
+            LatLng(19.421062, -99.179251),
+            LatLng(19.421502, -99.178586),
+            LatLng(19.421730, -99.178768),
+            LatLng(19.422557, -99.177123),
+            LatLng(19.422784, -99.175932))
+        width(8f)
+        color(Color.BLUE)
+        geodesic(true)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -45,6 +66,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         selectPathFragment.finisPath.observe(this, Observer {
             hideSoftKeyboard()
             finishPath(it)
+        })
+        screenStates.observe(this, Observer { screenStates ->
+            when(screenStates){
+                is ScreenStates.MainMap -> showMainMap()
+                is ScreenStates.LetsGo -> showLetsGoFragment()
+                is ScreenStates.PathTraced -> showPath()
+            }
         })
     }
 
@@ -82,11 +110,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
             finish()
         }
         btnLetsGo.setOnClickListener {
-            showPath()
-        }
-
-        imvSOS.setOnClickListener {
-            drawPath()
+            if(screenStates.value == ScreenStates.LetsGo)
+                screenStates.value = ScreenStates.PathTraced
+            else
+                screenStates.value = ScreenStates.LetsGo
         }
 
         imvDropdown.setOnTouchListener(View.OnTouchListener { v, event ->
@@ -95,7 +122,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
                     selectPathFragment.showSavedRoutes()
                     imvDropdown.visibility = View.INVISIBLE
                     return@OnTouchListener true
-                } // if you want to handle the touch event
+                }
                 MotionEvent.ACTION_UP ->{
                     imvDropdown.visibility = View.VISIBLE
                     selectPathFragment.hideSavedRoutes()
@@ -104,52 +131,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
             }
             false
         })
-    }
 
-    fun drawPath(){
-
-        onBackPressed()
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(19.415077, -99.188688),14f))
-
-        mMap.addPolyline(
-            PolylineOptions().apply {
-                add(startMarket?.position,
-                    LatLng(19.420971, -99.199891),
-                    LatLng(19.420074, -99.197279),
-                    LatLng(19.418565, -99.193715),
-                    LatLng(19.420941, -99.192623),
-                    LatLng(19.421442, -99.190165),
-                    LatLng(19.421112, -99.189558),
-                    LatLng(19.421356, -99.188253),
-                    LatLng(19.421487, -99.184251),
-                    LatLng(19.422185, -99.181633),
-                    LatLng(19.421952, -99.180217),
-                    LatLng(19.421062, -99.179251),
-                    LatLng(19.421502, -99.178586),
-                    LatLng(19.421730, -99.178768),
-                    LatLng(19.422557, -99.177123),
-                    finishMarker?.position)
-                width(8f)
-                color(Color.BLUE)
-                geodesic(true)
-            }
-        )
-
-
-    }
-
-    private fun showPath() {
-        replaceFragment(selectPathFragment)
-        imvBurguerMenu.visibility = View.GONE
-        imvDropdown.visibility = View.VISIBLE
-        imvTitle.visibility = View.GONE
-
+        imvBackBlue.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frameStartPath, fragment, fragment.tag).addToBackStack(fragment.tag)
+            replace(R.id.frameStartPath, fragment, fragment.tag)
             commit()
         }
     }
@@ -159,14 +149,57 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        hidePath()
+        when(screenStates.value){
+            is ScreenStates.MainMap -> finish()
+            is ScreenStates.LetsGo -> screenStates.value = ScreenStates.MainMap
+            is ScreenStates.PathTraced -> screenStates.value = ScreenStates.LetsGo
+        }
     }
 
-    private fun hidePath(){
-        imvDropdown.visibility = View.GONE
+    private fun showMainMap(){
         imvBurguerMenu.visibility = View.VISIBLE
         imvTitle.visibility = View.VISIBLE
+        consLayButtonsWithoutGo.visibility = View.VISIBLE
+        btnLocation.visibility = View.GONE
+        imvBackBlue.visibility = View.GONE
+        imvFinishJourney.visibility = View.GONE
+        imvDropdown.visibility = View.GONE
+        replaceFragment(Fragment())
+
+    }
+
+    private fun showLetsGoFragment() {
+        mMap.clear()
+        imvDropdown.visibility = View.VISIBLE
+        btnLocation.visibility = View.VISIBLE
+        btnLetsGo.visibility = View.VISIBLE
+        imvBackBlue.visibility = View.GONE
+        imvFinishJourney.visibility = View.GONE
+        imvBurguerMenu.visibility = View.GONE
+        imvTitle.visibility = View.GONE
+        consLayButtonsWithoutGo.visibility = View.GONE
+        btnCamera.visibility = View.GONE
+        replaceFragment(selectPathFragment)
+    }
+
+    private fun showPath() {
+        selectPathFragment.clear()
+        imvBackBlue.visibility = View.VISIBLE
+        imvFinishJourney.visibility = View.VISIBLE
+        btnCamera.visibility = View.VISIBLE
+        consLayButtonsWithoutGo.visibility = View.VISIBLE
+        imvDropdown.visibility = View.GONE
+        btnLetsGo.visibility = View.GONE
+        btnLocation.visibility = View.GONE
+        drawPath()
+        replaceFragment(Fragment())
+    }
+
+    private fun drawPath(){
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(19.415077, -99.188688),14f))
+
+        mMap.addPolyline(path)
     }
 
     /**

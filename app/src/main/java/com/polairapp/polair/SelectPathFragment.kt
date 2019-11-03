@@ -73,11 +73,7 @@ class SelectPathFragment: Fragment() {
             finisPath.value = LatLng(19.422784, -99.175932)
             edtFinishPath.setText(txvCentroCulturalDigital.text)
         }
-        txvPresstoParquePolanco.setOnClickListener {
-            linLayFinishPathHistory.visibility = View.GONE
-            finisPath.value = LatLng(19.440345, -99.184166)
-            edtFinishPath.setText(txvPresstoParquePolanco.text)
-        }
+
     }
 
     fun showSavedRoutes() {
@@ -86,6 +82,11 @@ class SelectPathFragment: Fragment() {
 
     fun hideSavedRoutes() {
         consLaySavedPaths.visibility = View.GONE
+    }
+
+    fun clear() {
+        edtStartPath.text = null
+        edtFinishPath.text = null
     }
 
     interface BackListener{
