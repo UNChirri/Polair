@@ -56,6 +56,11 @@
             android:label="Predict"
             android:theme="@style/AppThemeNoActionBar">
         </activity>
+        <activity
+            android:name=".PredictResultsActivity"
+            android:label="PredictResults"
+            android:theme="@style/AppThemeNoActionBar">
+        </activity>
     </application>
 
 </manifest>
