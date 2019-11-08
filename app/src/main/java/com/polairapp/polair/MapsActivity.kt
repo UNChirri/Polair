@@ -156,6 +156,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         imvBackBlue.setOnClickListener {
             onBackPressed()
         }
+
+        imvFinishJourney.setOnClickListener {
+            startActivity(Intent(this, FinishJourneyActivity::class.java))
+            finish()
+        }
     }
 
     private fun replaceFragment(replace: Boolean) {

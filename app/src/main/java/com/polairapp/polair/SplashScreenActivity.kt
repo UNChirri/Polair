@@ -8,13 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-import kotlin.properties.Delegates
 
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
 
-    private lateinit var pagerAdapter: SplashViewPagerAdapter
+    private lateinit var pagerAdapter: ViewPagerAdapter
 
     private lateinit var rightPagerButton: Button
 
@@ -27,7 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
         leftPagerButton = findViewById(R.id.pager_one)
         leftPagerButton.isPressed = true
         viewPager = findViewById(R.id.splash_viewpager)
-        pagerAdapter = SplashViewPagerAdapter(supportFragmentManager, populateDescriptionList())
+        pagerAdapter = ViewPagerAdapter(supportFragmentManager, populateDescriptionList())
         viewPager.adapter = pagerAdapter
 
         initListeners()
