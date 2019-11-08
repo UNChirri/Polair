@@ -207,8 +207,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         btnPrediction.visibility = View.GONE
         drawPath()
         replaceFragment(false)
-        addHeatMap()
-        //selectPathFragment.clear()
+        heatMapTool.addHeatMap()
     }
 
     private fun drawPath(){
