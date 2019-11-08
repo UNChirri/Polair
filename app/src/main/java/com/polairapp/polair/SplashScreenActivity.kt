@@ -7,13 +7,13 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import kotlin.properties.Delegates
+import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
 
-    private lateinit var pagerAdapter: SplashViewPagerAdapter
+    private lateinit var pagerAdapter: ViewPagerAdapter
 
     private lateinit var rightPagerButton: Button
 
@@ -26,9 +26,14 @@ class SplashScreenActivity : AppCompatActivity() {
         leftPagerButton = findViewById(R.id.pager_one)
         leftPagerButton.isPressed = true
         viewPager = findViewById(R.id.splash_viewpager)
-        pagerAdapter = SplashViewPagerAdapter(supportFragmentManager, populateDescriptionList())
+        pagerAdapter = ViewPagerAdapter(supportFragmentManager, populateDescriptionList())
         viewPager.adapter = pagerAdapter
 
+        initListeners()
+
+    }
+
+    fun initListeners(){
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -49,6 +54,10 @@ class SplashScreenActivity : AppCompatActivity() {
 
         })
 
+        splash_register_button.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun  populateDescriptionList() : ArrayList<Fragment>{

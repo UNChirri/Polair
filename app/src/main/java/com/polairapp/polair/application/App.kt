@@ -1,4 +1,4 @@
-package com.polairapp.polair.presentation
+package com.polairapp.polair.application
 
 import android.app.Application
 import com.facebook.appevents.AppEventsLogger

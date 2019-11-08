@@ -34,7 +34,6 @@
 
         <activity
             android:name=".SplashScreenActivity"
-            android:label="Splash"
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,6 +61,8 @@
             android:label="PredictResults"
             android:theme="@style/AppThemeNoActionBar">
         </activity>
+        <activity android:name=".FinishJourneyActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
     </application>
 
 </manifest>
