@@ -11,20 +11,20 @@
         android:id="@+id/air_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/air_icon"
         android:background="@drawable/ic_air_icon"
+        android:contentDescription="@string/air_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
 
     <ImageView
         android:id="@+id/air_gif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:contentDescription="@string/air_icon"
         app:layout_constraintTop_toBottomOf="@+id/air_icon"
         app:layout_constraintBottom_toBottomOf="parent"
