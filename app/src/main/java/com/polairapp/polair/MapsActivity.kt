@@ -143,8 +143,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
             areWorkshopsActive = !areWorkshopsActive
             if (areWorkshopsActive){
                 placeMarkers()
+                btnWorkshop.setBackgroundResource(R.drawable.ic_workshops_button_active)
             } else {
                 removeMarkers()
+                btnWorkshop.setBackgroundResource(R.drawable.ic_workshops_button)
             }
 
         }
