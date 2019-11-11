@@ -57,6 +57,26 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/btnPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_plus"
+        map:layout_constraintBottom_toTopOf="@id/btnMinus"
+        map:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <ImageView
+        android:id="@+id/btnMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ic_minus"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
         android:id="@+id/routes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
