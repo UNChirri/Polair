@@ -49,11 +49,16 @@ class PredictActivity : AppCompatActivity() {
         return buttonName
     }
 
+    private fun checkMinutesDigit(minutes: Int): String {
+        return if (minutes <= 9) "0$minutes" else minutes.toString()
+    }
+
     private fun getTimeFormatted(): String {
+        println(time_picker_predict.minute)
         val selectedHour = if (time_picker_predict.hour >= 12) time_picker_predict.hour % 12 else time_picker_predict.hour
         val selectedHourFromatted = if (selectedHour == 0) 12 else selectedHour
         val amOrPm = if (time_picker_predict.hour >= 12) "PM" else "AM"
-        return selectedHourFromatted.toString() + ":" + time_picker_predict.minute.toString() + " " + amOrPm
+        return selectedHourFromatted.toString() + ":" + checkMinutesDigit(time_picker_predict.minute) + " " + amOrPm
 
     }
 
