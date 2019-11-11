@@ -6,20 +6,21 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.google.maps.android.heatmaps.Gradient
-import com.google.maps.android.heatmaps.HeatmapTileProvider
 import kotlinx.android.synthetic.main.activity_maps.*
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import org.json.JSONArray
+import org.json.JSONException
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment.BackListener {
 
@@ -50,6 +51,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     private lateinit var heatMapTool: HeatMapUtils
+
+    private var areWorkshopsActive: Boolean = false
+
+    private lateinit var workshopMarkers: ArrayList<Marker>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,14 +103,50 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
 
     }
 
-    private fun initButtonsListeners() {
-        btnWorkshop.setOnClickListener {
-            mMap.addMarker(MarkerOptions().apply {
-                position(LatLng(4.63819,-74.08623))
-                title("Marker in Sydney")
+    @Throws(JSONException::class)
+    private fun readItems(resource: Int): HashMap<String, LatLng> {
+        val markerMap : HashMap<String, LatLng> = HashMap()
+        val inputStream = resources.openRawResource(resource)
+        val json = Scanner(inputStream).useDelimiter("\\A").next()
+        val array = JSONArray(json)
+        for (i in 0 until array.length()) {
+            val `object` = array.getJSONObject(i)
+            val lat = `object`.getDouble("lat")
+            val lng = `object`.getDouble("lng")
+            markerMap.put(`object`.getString("title"), LatLng(lat, lng))
+        }
+        return markerMap
+    }
+
+    private fun placeMarkers() {
+        val workshops = readItems(R.raw.workshops)
+        workshopMarkers = ArrayList()
+        workshops.forEach { (title, point) ->
+            val workshopMarker = mMap.addMarker(MarkerOptions().apply {
+                position(point)
+                title(title)
                 icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_tools))
                 flat(true)
             })
+            workshopMarkers.add(workshopMarker)
+        }
+    }
+
+    private fun removeMarkers() {
+        workshopMarkers.forEach {
+            it.remove()
+        }
+    }
+
+    private fun initButtonsListeners() {
+        btnWorkshop.setOnClickListener {
+            areWorkshopsActive = !areWorkshopsActive
+            if (areWorkshopsActive){
+                placeMarkers()
+            } else {
+                removeMarkers()
+            }
+
         }
         btnPrediction.setOnClickListener {
             val intent = Intent(this, PredictActivity::class.java)
@@ -244,4 +285,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         inputMethodManager.hideSoftInputFromWindow(
             currentFocus?.windowToken, 0)
     }
+
 }
