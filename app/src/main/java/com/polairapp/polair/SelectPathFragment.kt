@@ -32,6 +32,11 @@ class SelectPathFragment: Fragment() {
         initListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        clear()
+    }
+
     private fun initListeners() {
         rdbtnHouseToU.setOnClickListener {
             rdbtnWorkToHouse.isChecked = false
@@ -83,8 +88,8 @@ class SelectPathFragment: Fragment() {
     }
 
     fun clear() {
-        edtStartPath.text = null
-        edtFinishPath.text = null
+        edtStartPath.setText("")
+        edtFinishPath.setText("")
     }
 
     interface BackListener{

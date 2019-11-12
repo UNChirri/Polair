@@ -88,7 +88,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     private fun finishPath(latLng: LatLng) {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16f))
         finishMarker =  mMap.addMarker(MarkerOptions().apply {
             position(latLng)
             icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_endpoint))
@@ -99,7 +98,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         startMarker?.let {
             it.remove()
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18f))
         startMarker = mMap.addMarker(MarkerOptions().apply {
             position(latLng)
             icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
@@ -259,9 +257,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     private fun drawPath(){
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(19.415077, -99.188688),14f))
-
         mMap.addPolyline(path)
     }
 
@@ -280,7 +275,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
 
         val ciudadMexico = LatLng(19.423977, -99.185688)
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ciudadMexico,15f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ciudadMexico,14f))
 
         //Experimental call - HeatMap
         heatMapTool = HeatMapUtils(mMap)
