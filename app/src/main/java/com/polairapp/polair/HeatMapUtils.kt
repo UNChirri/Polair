@@ -9,8 +9,6 @@ import com.google.android.gms.maps.model.TileOverlayOptions
 import com.google.maps.android.heatmaps.HeatmapTileProvider
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.math.round
-import kotlin.math.roundToLong
 
 class HeatMapUtils(mMap: GoogleMap) {
 
@@ -40,7 +38,9 @@ class HeatMapUtils(mMap: GoogleMap) {
 
     private val RANDOM_POINT_BASE_NUMBER = 100
 
-    private val BASE_LAT_LNG : LatLng = LatLng(19.420977, -99.182688)
+    private val BASE_LAT_LNG : LatLng = LatLng(19.441349, -99.183546)
+
+    private val BASE_LAT_LNG_AUX : LatLng = LatLng(19.401624, -99.169577)
 
     private val NEAR_POINT_BASE_MIN = 10000
     private val NEAR_POINT_BASE_MAX = 20000
@@ -48,7 +48,8 @@ class HeatMapUtils(mMap: GoogleMap) {
     private val FAR_POINT_BASE_MAX = 2000
 
     fun addHeatMap() {
-        populatePointsArray()
+        populatePointsArray(BASE_LAT_LNG)
+        populatePointsArray(BASE_LAT_LNG_AUX)
         //HeatmapTileProvider must be declared here in order to modify radius
         val mProvider: HeatmapTileProvider = HeatmapTileProvider.Builder().data(defaultPoints).build()
         //Setups
@@ -65,12 +66,12 @@ class HeatMapUtils(mMap: GoogleMap) {
         return bd.toDouble()
     }
 
-    private fun populatePointsArray() {
+    private fun populatePointsArray(base_lat_lng: LatLng) {
         //Raw values based on BASE_LAT_LNG point
-        val latDecPartRaw = BASE_LAT_LNG.latitude % 1
-        val lngDecPartRaw = BASE_LAT_LNG.longitude % 1
-        val latIntPart = BASE_LAT_LNG.latitude - (latDecPartRaw)
-        val lngIntPart = BASE_LAT_LNG.longitude - (lngDecPartRaw)
+        val latDecPartRaw = base_lat_lng.latitude % 1
+        val lngDecPartRaw = base_lat_lng.longitude % 1
+        val latIntPart = base_lat_lng.latitude - (latDecPartRaw)
+        val lngIntPart = base_lat_lng.longitude - (lngDecPartRaw)
         for (x in 0 until RANDOM_POINT_BASE_NUMBER) {
             when (getRandomNumber(0, 3).toInt()) {
                 0 -> {
