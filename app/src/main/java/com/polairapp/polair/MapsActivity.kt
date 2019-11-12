@@ -272,6 +272,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.uiSettings.isCompassEnabled = false
 
         val ciudadMexico = LatLng(19.423977, -99.185688)
 
