@@ -26,8 +26,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
 
     private lateinit var mMap: GoogleMap
     private val selectPathFragment = SelectPathFragment()
-    private var startMarket: MarkerOptions?=null
-    private var finishMarker: MarkerOptions?=null
+    private var startMarker: Marker?=null
+    private var finishMarker: Marker?=null
     private val screenStates = MutableLiveData<ScreenStates>()
     private val path = PolylineOptions().apply {
         add(LatLng(19.420971, -99.199891),
@@ -85,22 +85,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     private fun finishPath(latLng: LatLng) {
-        finishMarker = MarkerOptions().apply {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16f))
+        finishMarker =  mMap.addMarker(MarkerOptions().apply {
             position(latLng)
             icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_endpoint))
-        }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16f))
-        mMap.addMarker(finishMarker)
+        })
     }
 
     fun startPath(latLng: LatLng) {
-        startMarket = MarkerOptions().apply {
-            position(latLng)
-            icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
+        startMarker?.let {
+            it.remove()
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18f))
-        mMap.addMarker(startMarket)
-
+        startMarker = mMap.addMarker(MarkerOptions().apply {
+            position(latLng)
+            icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
+            flat(true)
+        })
     }
 
     @Throws(JSONException::class)
