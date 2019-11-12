@@ -29,26 +29,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     private var startMarker: Marker?=null
     private var finishMarker: Marker?=null
     private val screenStates = MutableLiveData<ScreenStates>()
-    private val path = PolylineOptions().apply {
-        add(LatLng(19.420971, -99.199891),
-            LatLng(19.420074, -99.197279),
-            LatLng(19.418565, -99.193715),
-            LatLng(19.420941, -99.192623),
-            LatLng(19.421442, -99.190165),
-            LatLng(19.421112, -99.189558),
-            LatLng(19.421356, -99.188253),
-            LatLng(19.421487, -99.184251),
-            LatLng(19.422185, -99.181633),
-            LatLng(19.421952, -99.180217),
-            LatLng(19.421062, -99.179251),
-            LatLng(19.421502, -99.178586),
-            LatLng(19.421730, -99.178768),
-            LatLng(19.422557, -99.177123),
-            LatLng(19.422784, -99.175932))
-        width(8f)
-        color(Color.BLUE)
-        geodesic(true)
-    }
+    private lateinit var path: PolylineOptions
 
     private lateinit var heatMapTool: HeatMapUtils
 
@@ -64,6 +45,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         mapFragment.getMapAsync(this)
         initButtonsListeners()
         initObservers()
+        path = PolylineOptions().apply {
+            add(LatLng(19.421086, -99.199854),
+                LatLng(19.420971, -99.199891),
+                LatLng(19.420074, -99.197279),
+                LatLng(19.418565, -99.193715),
+                LatLng(19.420941, -99.192623),
+                LatLng(19.421442, -99.190165),
+                LatLng(19.421112, -99.189558),
+                LatLng(19.421356, -99.188253),
+                LatLng(19.421487, -99.184251),
+                LatLng(19.422185, -99.181633),
+                LatLng(19.421952, -99.180217),
+                LatLng(19.421062, -99.179251),
+                LatLng(19.421502, -99.178586),
+                LatLng(19.421730, -99.178768),
+                LatLng(19.422557, -99.177123),
+                LatLng(19.422784, -99.175932),
+                LatLng(19.422784, -99.175932))
+            width(8f)
+            color(getColor(R.color.blue_line))
+            geodesic(true)
+        }
     }
 
     private fun initObservers() {
@@ -219,6 +222,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         imvBurguerMenu.visibility = View.VISIBLE
         imvTitle.visibility = View.VISIBLE
         consLayButtonsWithoutGo.visibility = View.VISIBLE
+        btnPrediction.visibility = View.VISIBLE
         btnLocation.visibility = View.GONE
         imvBackBlue.visibility = View.GONE
         imvFinishJourney.visibility = View.GONE

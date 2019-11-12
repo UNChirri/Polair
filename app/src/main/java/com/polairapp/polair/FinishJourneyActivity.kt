@@ -13,6 +13,7 @@ class FinishJourneyActivity: AppCompatActivity() {
         setContentView(R.layout.activity_finish_journey)
         setViewPagerAdapter()
         initWidgetsListeners()
+        leftButton.isPressed = true
     }
 
     private fun initWidgetsListeners() {
