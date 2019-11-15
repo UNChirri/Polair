@@ -279,6 +279,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         //Experimental call - HeatMap
         heatMapTool = HeatMapUtils(mMap)
         heatMapTool.addHeatMap()
+        mMap.uiSettings.isMapToolbarEnabled = false
+
     }
 
     fun hideSoftKeyboard() {
