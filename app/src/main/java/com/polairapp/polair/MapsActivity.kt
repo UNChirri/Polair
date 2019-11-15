@@ -164,7 +164,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         btnPrediction.setOnClickListener {
             val intent = Intent(this, PredictActivity::class.java)
             startActivity(intent)
-            finish()
         }
         btnLetsGo.setOnClickListener {
             if(screenStates.value == ScreenStates.LetsGo)
@@ -286,7 +285,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ciudadMexico,14f))
 
-        //Experimental call - HeatMap
         heatMapTool = HeatMapUtils(mMap)
         heatMapTool.addHeatMap()
         mMap.uiSettings.isMapToolbarEnabled = false

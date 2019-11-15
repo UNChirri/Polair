@@ -53,10 +53,6 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
         })
-
-        splash_register_button.setOnClickListener {
-            startActivity(Intent(this, MapsActivity::class.java))
-        }
     }
 
     private fun  populateDescriptionList() : ArrayList<Fragment>{
@@ -71,5 +67,6 @@ class SplashScreenActivity : AppCompatActivity() {
     fun startNextActivity(view: View) {
         val intent = Intent(view.context, LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

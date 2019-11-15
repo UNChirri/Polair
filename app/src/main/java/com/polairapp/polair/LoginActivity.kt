@@ -38,19 +38,13 @@ class LoginActivity: AppCompatActivity() {
         facebookLogin.setReadPermissions("email", "public_profile")
         facebookLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                print("Sending to another activity")
                 startActivity(Intent(this@LoginActivity, LoadingActivity::class.java))
+                finish()
             }
 
-            override fun onCancel() {
+            override fun onCancel() {}
 
-                print("")
-            }
-
-            override fun onError(error: FacebookException) {
-
-                print(error)
-            }
+            override fun onError(error: FacebookException) {}
 
         })
 
