@@ -10,4 +10,5 @@
     <color name="loginColor">#A5140F26</color>
     <color name="selectPathBlue">#2E4468</color>
     <color name="edtGrey">#1AFFFFFF</color>
+    <color name="blue_line">#2E4468</color>
 </resources>

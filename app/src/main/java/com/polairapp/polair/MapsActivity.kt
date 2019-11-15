@@ -29,32 +29,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     private var startMarker: Marker?=null
     private var finishMarker: Marker?=null
     private val screenStates = MutableLiveData<ScreenStates>()
-    private val path = PolylineOptions().apply {
-        add(LatLng(19.420971, -99.199891),
-            LatLng(19.420074, -99.197279),
-            LatLng(19.418565, -99.193715),
-            LatLng(19.420941, -99.192623),
-            LatLng(19.421442, -99.190165),
-            LatLng(19.421112, -99.189558),
-            LatLng(19.421356, -99.188253),
-            LatLng(19.421487, -99.184251),
-            LatLng(19.422185, -99.181633),
-            LatLng(19.421952, -99.180217),
-            LatLng(19.421062, -99.179251),
-            LatLng(19.421502, -99.178586),
-            LatLng(19.421730, -99.178768),
-            LatLng(19.422557, -99.177123),
-            LatLng(19.422784, -99.175932))
-        width(8f)
-        color(Color.BLUE)
-        geodesic(true)
-    }
-
+    private lateinit var path: PolylineOptions
     private lateinit var heatMapTool: HeatMapUtils
-
     private var areWorkshopsActive: Boolean = false
-
     private lateinit var workshopMarkers: ArrayList<Marker>
+    private var bycycleSeleceted = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +43,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         mapFragment.getMapAsync(this)
         initButtonsListeners()
         initObservers()
+        path = PolylineOptions().apply {
+            add(LatLng(19.421086, -99.199854),
+                LatLng(19.420971, -99.199891),
+                LatLng(19.420074, -99.197279),
+                LatLng(19.418565, -99.193715),
+                LatLng(19.420941, -99.192623),
+                LatLng(19.421442, -99.190165),
+                LatLng(19.421112, -99.189558),
+                LatLng(19.421356, -99.188253),
+                LatLng(19.421487, -99.184251),
+                LatLng(19.422185, -99.181633),
+                LatLng(19.421952, -99.180217),
+                LatLng(19.421062, -99.179251),
+                LatLng(19.421502, -99.178586),
+                LatLng(19.421730, -99.178768),
+                LatLng(19.422557, -99.177123),
+                LatLng(19.422784, -99.175932),
+                LatLng(19.422784, -99.175932))
+            width(8f)
+            color(getColor(R.color.blue_line))
+            geodesic(true)
+        }
     }
 
     private fun initObservers() {
@@ -75,6 +76,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
             hideSoftKeyboard()
             finishPath(it)
         })
+        selectPathFragment.bicycleFlag.observe(this, Observer {
+            bycycleSeleceted = it
+        })
         screenStates.observe(this, Observer { screenStates ->
             when(screenStates){
                 is ScreenStates.MainMap -> showMainMap()
@@ -85,7 +89,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     private fun finishPath(latLng: LatLng) {
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16f))
         finishMarker =  mMap.addMarker(MarkerOptions().apply {
             position(latLng)
             icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_endpoint))
@@ -96,12 +99,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         startMarker?.let {
             it.remove()
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18f))
-        startMarker = mMap.addMarker(MarkerOptions().apply {
-            position(latLng)
-            icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
-            flat(true)
-        })
+        startMarker = if(bycycleSeleceted){
+            mMap.addMarker(MarkerOptions().apply {
+                position(latLng)
+                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
+                flat(true)
+            })
+        }else{
+            mMap.addMarker(MarkerOptions().apply {
+                position(latLng)
+                icon(BitmapDescriptorFactory.fromResource(R.drawable.woman_running))
+                flat(true)
+            })
+        }
     }
 
     @Throws(JSONException::class)
@@ -219,6 +229,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         imvBurguerMenu.visibility = View.VISIBLE
         imvTitle.visibility = View.VISIBLE
         consLayButtonsWithoutGo.visibility = View.VISIBLE
+        btnPrediction.visibility = View.VISIBLE
         btnLocation.visibility = View.GONE
         imvBackBlue.visibility = View.GONE
         imvFinishJourney.visibility = View.GONE
@@ -255,9 +266,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     }
 
     private fun drawPath(){
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(19.415077, -99.188688),14f))
-
         mMap.addPolyline(path)
     }
 
@@ -272,10 +280,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.uiSettings.isCompassEnabled = false
 
         val ciudadMexico = LatLng(19.423977, -99.185688)
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ciudadMexico,15f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ciudadMexico,14f))
 
         //Experimental call - HeatMap
         heatMapTool = HeatMapUtils(mMap)

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
@@ -15,6 +16,7 @@ class SelectPathFragment: Fragment() {
     lateinit var mContext: BackListener
     var startPath = MutableLiveData<LatLng>()
     var finisPath = MutableLiveData<LatLng>()
+    var bicycleFlag = MutableLiveData<Boolean>().apply { value = true }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +34,12 @@ class SelectPathFragment: Fragment() {
         initListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        clear()
+        bicycleFlag.value = true
+    }
+
     private fun initListeners() {
         rdbtnHouseToU.setOnClickListener {
             rdbtnWorkToHouse.isChecked = false
@@ -45,31 +53,50 @@ class SelectPathFragment: Fragment() {
             mContext.onBackFragmentClick()
         }
 
-        edtStartPath.setOnFocusChangeListener{v,bool ->
-            linLayStartPathHistory.visibility = if(bool) View.VISIBLE
-            else View.GONE
+        edtStartPath.setOnTouchListener { _, _ ->
+            linLayStartPathHistory.visibility = View.VISIBLE
+            edtFinishPath.visibility = View.INVISIBLE
+            false
         }
 
-        edtFinishPath.setOnFocusChangeListener{v,bool ->
-            linLayFinishPathHistory.visibility = if(bool) View.VISIBLE
-            else View.GONE
+        edtFinishPath.setOnTouchListener{_,_ ->
+            linLayFinishPathHistory.visibility = View.VISIBLE
+            false
         }
         txvNavalClub.setOnClickListener {
             linLayStartPathHistory.visibility = View.GONE
             startPath.value = LatLng(19.421086, -99.199854)
             edtStartPath.setText(txvNavalClub.text)
+            edtFinishPath.visibility = View.VISIBLE
         }
 
         txvAngelaTheatre.setOnClickListener {
             linLayStartPathHistory.visibility = View.GONE
             startPath.value = LatLng(19.429074, -99.194224)
             edtStartPath.setText(txvAngelaTheatre.text)
+            edtFinishPath.visibility = View.VISIBLE
         }
 
         txvCentroCulturalDigital.setOnClickListener {
             linLayFinishPathHistory.visibility = View.INVISIBLE
             finisPath.value = LatLng(19.422784, -99.175932)
             edtFinishPath.setText(txvCentroCulturalDigital.text)
+        }
+
+        imvBicycle.setOnClickListener {
+            if(bicycleFlag.value == false){
+                imvBicycle.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_white_bicycle))
+                imvHuman.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_grey_human))
+                bicycleFlag.value = true
+            }
+        }
+
+        imvHuman.setOnClickListener {
+            if(bicycleFlag.value == true){
+                imvBicycle.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_grey_bicycle))
+                imvHuman.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_white_human))
+                bicycleFlag.value = false
+            }
         }
 
     }
@@ -83,8 +110,8 @@ class SelectPathFragment: Fragment() {
     }
 
     fun clear() {
-        edtStartPath.text = null
-        edtFinishPath.text = null
+        edtStartPath.setText("")
+        edtFinishPath.setText("")
     }
 
     interface BackListener{
