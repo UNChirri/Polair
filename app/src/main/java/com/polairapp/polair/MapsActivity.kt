@@ -30,12 +30,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
     private var finishMarker: Marker?=null
     private val screenStates = MutableLiveData<ScreenStates>()
     private lateinit var path: PolylineOptions
-
     private lateinit var heatMapTool: HeatMapUtils
-
     private var areWorkshopsActive: Boolean = false
-
     private lateinit var workshopMarkers: ArrayList<Marker>
+    private var bycycleSeleceted = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +76,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
             hideSoftKeyboard()
             finishPath(it)
         })
+        selectPathFragment.bicycleFlag.observe(this, Observer {
+            bycycleSeleceted = it
+        })
         screenStates.observe(this, Observer { screenStates ->
             when(screenStates){
                 is ScreenStates.MainMap -> showMainMap()
@@ -98,11 +99,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SelectPathFragment
         startMarker?.let {
             it.remove()
         }
-        startMarker = mMap.addMarker(MarkerOptions().apply {
-            position(latLng)
-            icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
-            flat(true)
-        })
+        startMarker = if(bycycleSeleceted){
+            mMap.addMarker(MarkerOptions().apply {
+                position(latLng)
+                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_bike_color))
+                flat(true)
+            })
+        }else{
+            mMap.addMarker(MarkerOptions().apply {
+                position(latLng)
+                icon(BitmapDescriptorFactory.fromResource(R.drawable.woman_running))
+                flat(true)
+            })
+        }
     }
 
     @Throws(JSONException::class)
