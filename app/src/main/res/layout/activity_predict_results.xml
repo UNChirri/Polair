@@ -57,6 +57,8 @@
         </TextView>
     </LinearLayout>
 
+
+
     <ImageView
         android:id="@+id/btnPlus"
         android:layout_width="wrap_content"
@@ -72,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/ic_minus"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintStart_toStartOf="parent" />
@@ -105,6 +107,14 @@
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <FrameLayout android:id="@+id/fragment_placeholder"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

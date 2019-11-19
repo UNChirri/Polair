@@ -1,7 +1,6 @@
 package com.polairapp.polair
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -9,15 +8,19 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.google.maps.android.heatmaps.Gradient
-import com.google.maps.android.heatmaps.HeatmapTileProvider
 import kotlinx.android.synthetic.main.activity_predict_results.*
+import bolts.Task.delay
+import java.util.Timer
+import kotlin.concurrent.schedule
+
 
 class PredictResultsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
     private lateinit var heatMapTool: HeatMapUtils
+
+    private var infoTouched : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,20 @@ class PredictResultsActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this, PredictActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        info.setOnClickListener {
+            val barsFragment = BarsFragment()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_placeholder,
+                barsFragment
+            ).commit()
+            Timer("SettingUp", false).schedule(5000) {
+                supportFragmentManager.beginTransaction().apply {
+                    remove(barsFragment)
+                    commit()
+                }
+            }
         }
     }
 
