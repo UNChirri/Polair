@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="10dp"
-            android:text="Distancia recorrida"
+            android:text="Distancia recorrida estimada"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="10dp"
-            android:text="Tiempo"
+            android:text="Tiempo estimado"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
@@ -117,7 +117,7 @@
             android:layout_width="wrap_content"
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginTop="10dp"
-            android:text="Calorias"
+            android:text="Calorias estimadas"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
