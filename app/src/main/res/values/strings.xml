@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Polair</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="bikers_first">Ciclistas primera pagina</string>
+    <string name="mobilize">Movilizate por la ruta mas sana para tus pulmones</string>
+    <string name="travel">Viaja con Polair</string>
+    <string name="bikers_second">Ciclistas segunda pagina</string>
+    <string name="share">Comparte</string>
+    <string name="help_others">Ayuda a otros ciclistas, colabora con tus amigos</string>
+    <string name="air_icon">Icono de aire</string>
+    <string name="tips_text">Predice la contaminación en tu ciudad hasta en las próximas 24 horas</string>
+    <string name="divisor">Divisor</string>
+    <string name="buttons_container">Contenedor de botones</string>
+    <string name="predict_button">Predecir</string>
+    <string name="sign_up">REGISTRARSE</string>
+    <string name="login">INICIAR SESIÓN</string>
+    <string name="future_contamination">Contaminación futura</string>
+    <string name="prediction_params">%s - %s</string>
+    <string name="start_path">Punto de inicio:</string>
+    <string name="finish_path">Destino:</string>
+    <string name="safe_path">Ruta menos contaminada</string>
+    <string name="paths_saved">Rutas guardadas</string>
+    <string name="house">casa</string>
+    <string name="university">Universidad</string>
+    <string name="work">trabajo</string>
+    <string name="naval_club">Club Naval</string>
+    <string name="angela_peralta_theatre">Teatro Angela Peralta</string>
+    <string name="centro_club">Centro Club Distrital</string>
+    <string name="pressto">Pressto Parque</string>
+    <string name="journey_detail">Detalles de tu viaje</string>
+</resources>

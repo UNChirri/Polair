@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/blue_gradient_background">
+
+    <ImageView
+        android:id="@+id/imvWhiteBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/txvTitleFinishJourney"
+        style="@style/monserratMedium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imvWhiteBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/journey_detail"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerFinishJourney"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toBottomOf="@id/txvTitleFinishJourney"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/pager_btn"
+        app:layout_constraintEnd_toStartOf="@+id/rightButton"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerFinishJourney"
+        android:layout_marginEnd="10dp">
+
+    </Button>
+
+    <Button
+        android:id="@+id/rightButton"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/pager_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerFinishJourney">
+    </Button>
+
+    <View
+        android:id="@+id/viewWhiteLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/leftButton"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewWhiteLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:text="Distancia recorrida estimada"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:text="3.14 Km"
+            android:textColor="@color/white"
+            android:textSize="26sp"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:text="Tiempo estimado"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:text="15 min"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:text="Calorias estimadas"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:text="92 cal"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
